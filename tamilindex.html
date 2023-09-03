@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Tally Tamil Font Keyboard</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> -->
+		<link rel="stylesheet" href="bootstrap.min.css">
+        <link rel="stylesheet" href="softkeys-0.0.1.css">
+
+        <style>
+           body { background-color:#fafafa; font-family:'Roboto';}
+        </style>
+    </head>
+    <body onload="display();">
+	<script>  
+//function to count the button clicks  
+function clickKeys() {  
+  if(typeof(Storage) !== "undefined") {
+var topicValue = document.getElementById("tamText").value;  
+    //if (localStorage.clickcount) {  
+    //  localStorage.clickcount = Number(localStorage.clickcount)+1;  
+    //} else {  
+    //  localStorage.clickcount = 1;  
+    //}
+var length = localStorage.length;
+	localStorage.setItem(length+1, topicValue);  
+  //  document.getElementById("result").innerHTML = "You have clicked the button " + localStorage.clickcount + " time(s).";  
+   display();
+   document.getElementById('tamText').value = '';
+  }  
+    //when the browser does not support  
+  else {  
+    document.getElementById("result").innerHTML = "Your browser does not support web storage.";  
+  }  
+}  
+// function display
+function display(){
+ var displayValue = '';
+  for (var i = 0; i < localStorage.length; i++){
+      var key = localStorage.key(i);
+      var value = localStorage.getItem(key);
+	  if(key == 'clickcount'){
+	  
+	  }else{
+	  displayValue = displayValue + value + ' <br/>';
+	  }
+      //alert("storage [" + key + "] = " + value);        
+   }
+   	  document.getElementById("result").innerHTML = "You have <br/>" + displayValue + " .";
+}
+
+//function to clear the data stored by browser  
+function clearKeys() {  
+    window.localStorage.clear();  
+	document.getElementById('tamText').value = '';
+	display();
+}  
+</script>  
+
+    <div id="jquery-script-menu">
+
+<div class="jquery-script-clear"></div>
+</div>
+</div>
+        <div class="container-fluid" style="margin-top:10px;">
+            <h1>Tally Tamil Keyboard</h1>
+                    <form class="row form">
+                        <div class="form-group">
+                            <input type="text" name="code" class="form-control input-lg" id="tamText">
+							<button onclick="clickKeys()" type="button">Click to Save</button>
+							<button onclick="clearKeys()" type="button">Clear Storage</button>
+                      </div>
+
+                        <div class="softkeys" data-target="input[name='code']"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script> -->
+		<script src="jquery-1.12.4.min.js"></script>
+        <script src="softkeys-0.0.1.js"></script>
+
+        <script>
+            $(document).ready(function(){
+                $('.softkeys').softkeys({
+                    target : $('.softkeys').data('target'),
+                    layout : [
+                        ['shift',
+                            ['`','~'],
+                            ['1','!'],
+                            ['2','@'],
+                            ['3','#'],
+                            ['4','$'],
+                            ['5','%'],
+                            ['6','^'],
+                            ['7','&amp;'],
+                            ['8','*'],
+                            ['9','('],
+                            ['0',')'],
+                            ['-', '_'],
+                            ['=','+'],
+                            'delete'
+                        ],
+                        [
+							'அ','ஆ','இ','ஈ','உ','ஊ','எ','ஏ','ஐ','ஒ','ஓ','ஔ'
+                        ],
+						[
+						    '்','ா','ி','ீ','ு','ூ','ெ','ே','ை','ொ','ோ','ௌ'
+                        ],
+						[
+							'க','ங','ச','ஞ','ட','ண','த','ந','ப','ம','ய','ர','ல','வ','ழ','ள','ற','ன'
+                        ],
+						[
+							'~','!','#','ஷ','ஸ','space','ஹ','ஜ',',','.','/','@'
+                        ]
+                    ]
+                });
+            });
+        </script>
+<div id="result"> </div>  
+</html>
